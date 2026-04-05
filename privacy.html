@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - Bract</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.7;
+            color: #1d1d1f;
+            background: #fff;
+            padding: 2rem 1.5rem;
+            max-width: 680px;
+            margin: 0 auto;
+        }
+        h1 { font-size: 1.75rem; font-weight: 700; margin-bottom: 0.25rem; }
+        .updated { font-size: 0.875rem; color: #86868b; margin-bottom: 2rem; }
+        h2 { font-size: 1.1rem; font-weight: 600; margin-top: 1.75rem; margin-bottom: 0.5rem; }
+        p { margin-bottom: 1rem; color: #1d1d1f; }
+        a { color: #0066cc; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .back { margin-top: 2.5rem; font-size: 0.875rem; }
+    </style>
+</head>
+<body>
+    <h1>Privacy Policy</h1>
+    <p class="updated">Last updated: March 2026</p>
+
+    <h2>1. Data Access</h2>
+    <p>Bract accesses your calendar and reminder data locally via Apple's EventKit framework. This data stays on your device and is never uploaded to external servers except as described below.</p>
+
+    <h2>2. AI Features &amp; Data Sent to Third Parties</h2>
+    <p>When you use AI features (natural language scheduling, weekly review), Bract sends only event titles and times to the Claude API (operated by Anthropic) or OpenAI's API, depending on your configuration. No event notes, attendees, locations, or attachments are ever sent.</p>
+    <p>All AI requests use your personal API key, which you provide and manage. Bract does not have its own API key and does not proxy your requests.</p>
+
+    <h2>3. Data Storage</h2>
+    <p>Your API key is stored in the device's secure Keychain, protected by biometric authentication (Face ID, Touch ID, or device passcode). All other app data is stored locally using Apple's SwiftData framework on encrypted storage.</p>
+
+    <h2>4. No Tracking or Analytics</h2>
+    <p>Bract does not track you across apps or websites. Bract does not collect analytics, crash reports, or usage data. Bract does not use advertising identifiers.</p>
+
+    <h2>5. No Data Selling</h2>
+    <p>Bract does not sell, share, or transfer your data to third parties for advertising or marketing purposes.</p>
+
+    <h2>6. Your Control</h2>
+    <p>You can delete your API key at any time in Settings. You can revoke calendar access in iOS/macOS Settings. All locally stored data can be removed by deleting the app.</p>
+
+    <h2>7. Contact</h2>
+    <p>For questions about this privacy policy, contact the developer through the App Store listing.</p>
+
+    <p class="back"><a href="/">&larr; bract.app</a></p>
+</body>
+</html>
