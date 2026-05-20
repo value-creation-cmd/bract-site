@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta name="theme-color" content="#fbfaf7" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1b1b1f" media="(prefers-color-scheme: dark)">
+<title>Bract — What's next</title>
+<meta name="description" content="What we're working on next, what's further out, and what we've decided not to build. No dates — indie software ships when it's right.">
+<link rel="canonical" href="https://bract.app/roadmap">
+<link rel="icon" type="image/png" href="/icon.png">
+<link rel="apple-touch-icon" href="/icon.png">
+<style>
+  :root {
+    --paper: #fbfaf7;
+    --ink: #1a1a1f;
+    --muted: #5a5650;
+    --accent: #4a6e5a;
+    --accent-hover: #2d4a3c;
+    --hairline: #e8e5de;
+    --card: #f4f2ec;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #1b1b1f;
+      --ink: #f5f3ee;
+      --muted: #a39e95;
+      --accent: #8aae93;
+      --accent-hover: #b3d3b9;
+      --hairline: #2c2a26;
+      --card: #2a2724;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font: 17px/1.65 -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+  ::selection { background: var(--accent); color: var(--paper); }
+  :focus-visible {
+    outline: 2px solid var(--ink);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  .skip-link {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    background: var(--ink);
+    color: var(--paper);
+    padding: 10px 16px;
+    border-radius: 0 0 6px 0;
+    z-index: 10;
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .skip-link:focus { left: 0; }
+
+  main {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 80px 28px 120px;
+  }
+  @media (max-width: 600px) {
+    main { padding: 48px 22px 80px; }
+  }
+
+  .wordmark {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font: 600 18px/1 -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    text-decoration: none;
+    margin-bottom: 56px;
+    padding: 4px 0;
+  }
+  .wordmark-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 7px;
+    display: block;
+  }
+
+  header.page-head {
+    padding-bottom: 28px;
+    margin-bottom: 36px;
+    border-bottom: 1px solid var(--hairline);
+  }
+  h1 {
+    font-family: ui-serif, "New York", "Charter", "Iowan Old Style", Georgia, serif;
+    font-size: clamp(32px, 4.4vw, 40px);
+    font-weight: 500;
+    letter-spacing: -0.018em;
+    line-height: 1.1;
+    margin: 0 0 10px;
+    color: var(--ink);
+  }
+  .page-head p {
+    color: var(--muted);
+    font-size: 16px;
+    margin: 0;
+  }
+
+  section { margin: 48px 0; }
+  .section-label {
+    font: 600 13px/1 -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+    letter-spacing: 0.10em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 0 0 10px;
+  }
+  h2 {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    margin: 0 0 18px;
+    color: var(--ink);
+  }
+  section > p {
+    color: var(--muted);
+    margin: 0 0 14px;
+  }
+
+  .items {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border-top: 1px solid var(--hairline);
+  }
+  .items li {
+    border-bottom: 1px solid var(--hairline);
+    padding: 18px 0;
+  }
+  .items li strong {
+    display: block;
+    font-size: 15.5px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 4px;
+    letter-spacing: -0.005em;
+  }
+  .items li p {
+    font-size: 15.5px;
+    line-height: 1.6;
+    color: var(--muted);
+    margin: 0;
+  }
+
+  .not-doing li strong::before {
+    content: "—  ";
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  .disclaimer {
+    background: var(--card);
+    border: 1px solid var(--hairline);
+    border-radius: 14px;
+    padding: 24px 26px;
+    margin: 48px 0 0;
+  }
+  .disclaimer p {
+    margin: 0;
+    color: var(--ink);
+    font-size: 15.5px;
+    line-height: 1.6;
+  }
+
+  a {
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid var(--hairline);
+    transition: border-color 150ms ease, color 150ms ease;
+  }
+  a:hover, a:focus-visible {
+    color: var(--accent-hover);
+    border-bottom-color: var(--accent-hover);
+  }
+
+  footer {
+    border-top: 1px solid var(--hairline);
+    margin-top: 64px;
+    padding-top: 22px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 12px;
+    font-size: 13.5px;
+    color: var(--muted);
+  }
+  footer nav a {
+    color: var(--muted);
+    margin-right: 16px;
+    border-bottom: none;
+    padding: 6px 0;
+    display: inline-block;
+  }
+  footer nav a:hover, footer nav a:focus-visible {
+    color: var(--ink);
+    border-bottom: none;
+  }
+  footer p { font-size: 12.5px; margin: 0; color: var(--muted); }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      transition-duration: 0ms !important;
+      animation-duration: 0ms !important;
+    }
+  }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<main id="main">
+  <a class="wordmark" href="/" aria-label="Bract home">
+    <img class="wordmark-icon" src="/icon.png" width="28" height="28" alt="">
+    <span>Bract</span>
+  </a>
+
+  <header class="page-head">
+    <h1>What's next</h1>
+    <p>What we're working on, what's further out, and what we've decided not to build. No dates.</p>
+  </header>
+
+  <section>
+    <p class="section-label">What's next</p>
+    <h2>Landing in the first updates after launch.</h2>
+    <ul class="items">
+      <li>
+        <strong>Real-world bug fixes.</strong>
+        <p>Whatever the first weeks of installs surface. Reply to <a href="mailto:support@bract.app">support@bract.app</a> and it goes onto the list.</p>
+      </li>
+      <li>
+        <strong>Polish on natural-language scheduling.</strong>
+        <p>The AI is good. Some phrasings still throw it. Each one we hear about makes the next person's first try smoother.</p>
+      </li>
+      <li>
+        <strong>More AI provider choice.</strong>
+        <p>Three providers ship at launch — Anthropic Claude, OpenAI GPT, Google Gemini. As the bring-your-own-key ecosystem widens, more will follow.</p>
+      </li>
+    </ul>
+  </section>
+
+  <section>
+    <p class="section-label">On our list</p>
+    <h2>Actively being built. Order may shift as work clarifies.</h2>
+    <ul class="items">
+      <li>
+        <strong>Bract for Mac.</strong>
+        <p>The codebase is universal — Mac needs its own design pass before it ships. We want to do it properly, not port it sloppily.</p>
+      </li>
+      <li>
+        <strong>Energy and sleep-aware scheduling.</strong>
+        <p>Bract uses signals from Apple Health — sleep, energy, heart-rate variability — to suggest realistic days. Your Health data never leaves your iPhone. Your AI provider sees a summary like "low-energy day" — never your numbers, never your sleep hours.</p>
+      </li>
+      <li>
+        <strong>A weekly intentions list.</strong>
+        <p>Things you want to do this week, without locking them to a time. Lower-stakes than putting everything on the calendar; higher-stakes than a to-do list that nobody reads on Wednesday.</p>
+      </li>
+      <li>
+        <strong>Deeper Weekly Review.</strong>
+        <p>The Review tab already shows what completed and what slipped. Next: what changed overnight, what's at risk this week, where the AI moved things to protect your focus.</p>
+      </li>
+      <li>
+        <strong>Block visual nesting.</strong>
+        <p>A Deep Work block with a meeting inside it should look like the meeting belongs to the block. Small visual change, big mental-model shift.</p>
+      </li>
+    </ul>
+  </section>
+
+  <section>
+    <p class="section-label">Where we're headed</p>
+    <h2>Directions, not commitments.</h2>
+    <ul class="items">
+      <li>
+        <strong>Bract notices what you actually do.</strong>
+        <p>You accept morning focus slots, decline late-afternoon ones, always shift Friday meetings to Thursday. No preferences screen — the app gets progressively righter without asking. This is the longest-term direction.</p>
+      </li>
+      <li>
+        <strong>Direct calendar integration for Google and Microsoft.</strong>
+        <p>Today Bract reads these through iOS Settings — add your Google or Outlook account there and they show up automatically. A future update lets you connect them directly inside Bract for richer fields and faster sync, without sending your data to a Bract server. Same model as your AI key: tokens stay in your iPhone Keychain, all calls go directly between your iPhone and the provider.</p>
+      </li>
+      <li>
+        <strong>Proactive block defense.</strong>
+        <p>A meeting lands on your Deep Work block. Bract quietly moves the block to the next slot that works and shows you a single "moved it — undo?" toast. You stop having to think about protecting your focus time.</p>
+      </li>
+      <li>
+        <strong>Travel-aware scheduling.</strong>
+        <p>Hooks for "I'm in Lisbon Wed–Sun, plan around that" already exist in the code. Turning it on takes a careful pass on time zones and how the AI explains its choices.</p>
+      </li>
+    </ul>
+  </section>
+
+  <section>
+    <p class="section-label">What we're not doing</p>
+    <h2>These are deliberate choices, not omissions.</h2>
+    <ul class="items not-doing">
+      <li>
+        <strong>No team or shared calendars.</strong>
+        <p>Bract is for one person's week. Team scheduling is a different product. iCloud, Google, and Outlook already handle shared calendars; Bract reads them through Apple's accounts integration.</p>
+      </li>
+      <li>
+        <strong>No web app, no sync server, no account.</strong>
+        <p>Your data lives on your device, in Apple's calendar database. There is no Bract cloud — and there won't be one. We'd rather build the best native app than a worse cross-platform one.</p>
+      </li>
+      <li>
+        <strong>No tracking, no analytics, no third-party SDKs.</strong>
+        <p>Permanent commitment, not "currently." This is the architecture, not a configuration.</p>
+      </li>
+      <li>
+        <strong>No autonomous AI.</strong>
+        <p>Bract suggests; you confirm. The AI never moves an event without you tapping. We don't want to ship surprises into your calendar — that's not the relationship we want with your time.</p>
+      </li>
+      <li>
+        <strong>No voice assistant.</strong>
+        <p>Dictation works in every iOS text field — including Bract's natural-language box. A separate voice flow would add a microphone permission, a recording UI, and a transcription dependency we don't need.</p>
+      </li>
+    </ul>
+  </section>
+
+  <aside class="disclaimer">
+    <p>This page describes directions we're working in, not a release schedule. We don't publish dates because indie software ships when it's right, not when a roadmap says so. Items here may move, change shape, or get dropped if we learn they aren't useful — and we'd rather tell you that honestly than ship something half-built to hit a quarter. <strong>If something here is the reason you'd buy Bract, please wait until it ships before you do.</strong></p>
+  </aside>
+
+  <footer>
+    <nav aria-label="Footer">
+      <a href="/">Home</a>
+      <a href="/privacy">Privacy</a>
+      <a href="/support">Support</a>
+      <a href="mailto:support@bract.app">Contact</a>
+    </nav>
+    <p>&copy; 2026 Bract</p>
+  </footer>
+</main>
+</body>
+</html>
