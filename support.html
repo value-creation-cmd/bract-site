@@ -6,9 +6,9 @@
 <meta name="referrer" content="no-referrer">
 <meta name="theme-color" content="#fbfaf7" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#1b1b1f" media="(prefers-color-scheme: dark)">
-<title>Bract — Privacy Policy</title>
-<meta name="description" content="Bract privacy policy: what calendar data the app sees, what leaves your device, and what stays local. App Privacy nutrition-label aligned.">
-<link rel="canonical" href="https://bract.app/privacy">
+<title>Bract — Support</title>
+<meta name="description" content="Bract support: how to get help, report issues, and find answers to common questions about the AI calendar app.">
+<link rel="canonical" href="https://bract.app/support">
 <style>
   :root {
     --paper: #fbfaf7;
@@ -94,33 +94,71 @@
     margin: 0 0 10px;
     color: var(--ink);
   }
-  .updated {
+  .page-head p {
     color: var(--muted);
-    font-size: 14.5px;
+    font-size: 16px;
     margin: 0;
   }
 
   /* Sections */
-  section { margin: 32px 0; }
+  section { margin: 40px 0; }
   h2 {
-    font-size: 18px;
-    font-weight: 600;
-    margin: 0 0 12px;
-    letter-spacing: -0.005em;
+    font-family: ui-serif, "New York", Charter, Georgia, serif;
+    font-size: 22px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    margin: 0 0 16px;
     color: var(--ink);
   }
   p {
     margin: 0 0 14px;
     color: var(--ink);
   }
-  p + p { margin-top: 14px; }
-  ul {
+
+  /* FAQ list */
+  .faq {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border-top: 1px solid var(--hairline);
+  }
+  .faq li {
+    border-bottom: 1px solid var(--hairline);
+    padding: 22px 0;
+  }
+  .faq li strong {
+    display: block;
+    font-size: 15.5px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 6px;
+    letter-spacing: -0.005em;
+  }
+  .faq li p {
+    font-size: 15.5px;
+    line-height: 1.6;
+    color: var(--muted);
+    margin: 0;
+  }
+
+  /* Issue checklist */
+  ul.checklist {
     padding-left: 22px;
     margin: 0 0 14px;
     color: var(--ink);
   }
-  li { margin-bottom: 8px; }
-  li strong { font-weight: 600; }
+  ul.checklist li { margin-bottom: 8px; }
+
+  /* Contact emphasis */
+  .contact-card {
+    background: var(--card);
+    border: 1px solid var(--hairline);
+    border-radius: 14px;
+    padding: 24px 26px;
+    margin: 16px 0;
+  }
+  .contact-card p { margin: 0; color: var(--ink); }
+  .contact-card p + p { margin-top: 8px; }
 
   a {
     color: var(--accent);
@@ -177,59 +215,67 @@
   <a class="wordmark" href="/" aria-label="Bract home">Bract</a>
 
   <header class="page-head">
-    <h1>Privacy Policy</h1>
-    <p class="updated">Last updated: May 2026</p>
+    <h1>Support</h1>
+    <p>Help with the AI calendar app for iPhone, iPad, and Mac.</p>
   </header>
 
   <section>
-    <h2>1. Data Access</h2>
-    <p>Bract accesses your calendar and reminder data locally via Apple's EventKit framework. This data stays on your device and is never uploaded to external servers except as described below.</p>
-  </section>
-
-  <section>
-    <h2>2. AI Features &amp; Data Sent to Third Parties</h2>
-    <p>When you use AI features (natural language scheduling, weekly review), Bract sends only event titles and times to your chosen AI provider's API. You pick the provider in Settings; Bract supports:</p>
-    <ul>
-      <li><strong>Anthropic</strong> — sends to <code>api.anthropic.com</code> (Claude). Privacy policy: <a href="https://www.anthropic.com/legal/privacy" rel="noopener">anthropic.com/legal/privacy</a></li>
-      <li><strong>OpenAI</strong> — sends to <code>api.openai.com</code> (GPT). Privacy policy: <a href="https://openai.com/policies/privacy-policy" rel="noopener">openai.com/policies/privacy-policy</a></li>
-      <li><strong>Google</strong> — sends to <code>generativelanguage.googleapis.com</code> (Gemini). Privacy policy: <a href="https://policies.google.com/privacy" rel="noopener">policies.google.com/privacy</a></li>
+    <h2>Quick answers</h2>
+    <ul class="faq">
+      <li>
+        <strong>How do I set up AI features?</strong>
+        <p>Open Settings → AI Provider, pick Anthropic / OpenAI / Google, and paste an API key from your provider's developer console. Takes about two minutes. The one-time AI unlock IAP gates the feature; provider compute is paid separately by you directly to your chosen provider (typically under $1/month).</p>
+      </li>
+      <li>
+        <strong>Why does Bract ask for calendar permission?</strong>
+        <p>Bract reads your existing Apple calendars to display events and detect scheduling conflicts. Your data stays on device unless you explicitly use an AI feature (which sends only event titles and times).</p>
+      </li>
+      <li>
+        <strong>Can I switch AI providers?</strong>
+        <p>Yes. One unlock works with all three. Change provider any time in Settings; your stored keys for other providers are preserved.</p>
+      </li>
+      <li>
+        <strong>What's a "ritual"?</strong>
+        <p>A daily or weekly habit that lives alongside your calendar — like meditation, gym, or a daily review. Streaks and a 7-day completion strip make consistency visible. Rituals show up in widgets and the morning brief.</p>
+      </li>
+      <li>
+        <strong>What's a "protected block"?</strong>
+        <p>Recurring time you've marked as committed (Focus Work, Sleep, Family, etc.). When AI scheduling suggests reschedules or finds open slots, it respects these blocks.</p>
+      </li>
+      <li>
+        <strong>Why does the app work without AI?</strong>
+        <p>The free tier (calendar viewing, ritual tracking, protected blocks, widgets, Weekly Review in data-only mode) doesn't require AI. AI features are an opt-in unlock.</p>
+      </li>
     </ul>
-    <p>No event notes, attendees, locations, or attachments are ever sent. Bract sends only the title and start/end time of relevant events.</p>
-    <p>All AI requests use your personal API key, which you provide and manage with the chosen provider. Bract does not have its own API key, does not proxy your requests, and does not see or retain your data after it's sent.</p>
   </section>
 
   <section>
-    <h2>3. Data Storage</h2>
-    <p>Each provider's API key is stored independently in the device's secure Keychain, protected by biometric authentication (Face ID, Touch ID, or device passcode). Switching providers in Settings does not reveal or move your stored keys. All other app data is stored locally using Apple's SwiftData framework on encrypted storage.</p>
+    <h2>Reporting issues</h2>
+    <div class="contact-card">
+      <p>If something is broken, please email the developer at <a href="mailto:support@bract.app">support@bract.app</a>.</p>
+      <p>Every message reaches a real human — Bract is a small project, not a corporation.</p>
+    </div>
+    <p>When reporting an issue, please include:</p>
+    <ul class="checklist">
+      <li>What device and OS version you're on (iPhone 17 Pro / iOS 17.5, etc.)</li>
+      <li>What you were trying to do</li>
+      <li>What happened instead</li>
+      <li>If AI-related: which provider you have configured (Anthropic / OpenAI / Google)</li>
+    </ul>
   </section>
 
   <section>
-    <h2>4. No Tracking or Analytics</h2>
-    <p>Bract does not track you across apps or websites. Bract does not collect analytics, crash reports, or usage data. Bract does not use advertising identifiers.</p>
-  </section>
-
-  <section>
-    <h2>5. No Data Selling</h2>
-    <p>Bract does not sell, share, or transfer your data to third parties for advertising or marketing purposes.</p>
-  </section>
-
-  <section>
-    <h2>6. Your Control</h2>
-    <p>You can delete each provider's API key at any time in Settings. You can revoke calendar access in iOS/macOS Settings. All locally stored data can be removed by deleting the app.</p>
-  </section>
-
-  <section>
-    <h2>7. Contact</h2>
-    <p>For questions about this privacy policy, contact the developer through the App Store listing.</p>
+    <h2>Privacy</h2>
+    <p>For data-handling details, see the <a href="/privacy">privacy policy</a>. Short version: calendar data stays on your device; AI features send only event titles and times to your chosen provider; no tracking, no analytics, no data selling.</p>
   </section>
 
   <footer>
     <nav aria-label="Footer">
       <a href="/">Home</a>
-      <a href="/support">Support</a>
+      <a href="/privacy">Privacy</a>
       <a href="mailto:support@bract.app">Contact</a>
     </nav>
-    <p>&copy; 2026 Bract. The full privacy policy is mirrored in-app at Settings → Privacy &amp; Security → Privacy Policy.</p>
+    <p>&copy; 2026 Bract</p>
   </footer>
 </main>
 </body>

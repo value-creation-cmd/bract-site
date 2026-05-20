@@ -1,35 +1,374 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bract</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            background: #fff;
-            color: #1d1d1f;
-            text-align: center;
-            padding: 2rem;
-        }
-        h1 { font-size: 2.5rem; font-weight: 700; margin-bottom: 0.5rem; }
-        .tagline { font-size: 1.125rem; color: #86868b; margin-bottom: 2rem; }
-        .links { display: flex; gap: 1.5rem; font-size: 0.9375rem; }
-        a { color: #0066cc; text-decoration: none; }
-        a:hover { text-decoration: underline; }
-    </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta name="theme-color" content="#fbfaf7" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1b1b1f" media="(prefers-color-scheme: dark)">
+<title>Bract — Smart calendar for iPhone and iPad</title>
+<meta name="description" content="Bract layers AI scheduling, protected time, and habit tracking on top of the Apple calendars you already use. No migration, no new account.">
+<link rel="canonical" href="https://bract.app/">
+<style>
+  :root {
+    --paper: #fbfaf7;
+    --ink: #1a1a1f;
+    --muted: #5a5650;
+    --accent: #2f5b89;
+    --accent-hover: #1f4570;
+    --hairline: #e8e5de;
+    --card: #f4f2ec;
+    --shadow: 0 1px 2px rgba(26, 26, 31, 0.04);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #1b1b1f;
+      --ink: #f5f3ee;
+      --muted: #a39e95;
+      --accent: #7ba8d9;
+      --accent-hover: #a1c4ea;
+      --hairline: #2c2a26;
+      --card: #242220;
+      --shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    }
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font: 17px/1.6 -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+  ::selection { background: var(--accent); color: var(--paper); }
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+  main {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 96px 28px 120px;
+  }
+  @media (max-width: 600px) {
+    main { padding: 56px 22px 80px; }
+  }
+
+  /* Wordmark */
+  .wordmark {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font: 600 18px/1 -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    text-decoration: none;
+    margin-bottom: 64px;
+  }
+  .wordmark::before {
+    content: "";
+    width: 22px; height: 22px;
+    border-radius: 6px;
+    background:
+      linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%);
+    box-shadow: var(--shadow);
+  }
+
+  /* Hero */
+  .hero { margin-bottom: 80px; }
+  h1 {
+    font-family: ui-serif, "New York", "Charter", "Iowan Old Style", Georgia, serif;
+    font-size: clamp(40px, 6.2vw, 64px);
+    font-weight: 500;
+    letter-spacing: -0.022em;
+    line-height: 1.08;
+    margin: 0 0 20px;
+    color: var(--ink);
+  }
+  .hero h1 em {
+    font-style: italic;
+    font-weight: 500;
+    color: var(--accent);
+  }
+  .tagline {
+    font-size: 19px;
+    line-height: 1.55;
+    color: var(--muted);
+    margin: 0 0 36px;
+    max-width: 600px;
+  }
+
+  /* CTAs */
+  .cta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+  }
+  .cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 13px 22px;
+    background: var(--ink);
+    color: var(--paper);
+    border-radius: 999px;
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 150ms ease, transform 150ms ease;
+    border: 1px solid var(--ink);
+  }
+  .cta:hover, .cta:focus-visible { background: var(--accent); border-color: var(--accent); }
+  .cta-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 13px 18px;
+    color: var(--ink);
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 500;
+    border-radius: 999px;
+    border: 1px solid var(--hairline);
+    transition: border-color 150ms ease, color 150ms ease;
+  }
+  .cta-secondary:hover, .cta-secondary:focus-visible {
+    border-color: var(--ink);
+    color: var(--accent);
+  }
+  .cta-arrow { width: 14px; height: 14px; }
+
+  /* Section rhythm */
+  .section { margin: 88px 0 0; }
+  .section-label {
+    font: 600 12px/1 -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 0 0 18px;
+  }
+  h2 {
+    font-family: ui-serif, "New York", Charter, Georgia, serif;
+    font-size: clamp(26px, 3.4vw, 32px);
+    font-weight: 500;
+    letter-spacing: -0.012em;
+    line-height: 1.18;
+    margin: 0 0 16px;
+    color: var(--ink);
+  }
+  .section p {
+    color: var(--muted);
+    margin: 0 0 14px;
+    max-width: 640px;
+  }
+  .section p strong { color: var(--ink); font-weight: 500; }
+
+  /* Feature grid */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1px;
+    margin-top: 36px;
+    background: var(--hairline);
+    border: 1px solid var(--hairline);
+    border-radius: 14px;
+    overflow: hidden;
+  }
+  @media (max-width: 640px) {
+    .grid { grid-template-columns: 1fr; }
+  }
+  .feature {
+    background: var(--paper);
+    padding: 26px 24px;
+    transition: background 200ms ease;
+  }
+  .feature:hover { background: var(--card); }
+  .feature-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0 0 8px;
+  }
+  .feature-icon {
+    width: 22px; height: 22px;
+    color: var(--accent);
+    flex-shrink: 0;
+  }
+  .feature h3 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: -0.005em;
+    color: var(--ink);
+  }
+  .feature p {
+    margin: 0;
+    font-size: 14.5px;
+    line-height: 1.55;
+    color: var(--muted);
+  }
+
+  /* AI block */
+  .ai-block {
+    margin-top: 96px;
+    padding: 36px 32px;
+    background: var(--card);
+    border-radius: 18px;
+    border: 1px solid var(--hairline);
+  }
+  .ai-block h2 { margin-top: 0; }
+  .ai-block .providers {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 18px;
+  }
+  .provider-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    background: var(--paper);
+    border: 1px solid var(--hairline);
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ink);
+  }
+  .provider-chip::before {
+    content: "";
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+
+  /* Footer */
+  footer {
+    margin-top: 112px;
+    padding-top: 28px;
+    border-top: 1px solid var(--hairline);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 16px;
+    font-size: 13.5px;
+    color: var(--muted);
+  }
+  footer a {
+    color: var(--muted);
+    text-decoration: none;
+    margin-right: 18px;
+    transition: color 150ms ease;
+  }
+  footer a:hover, footer a:focus-visible { color: var(--ink); }
+  footer .copyright { font-size: 12.5px; }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      transition-duration: 0ms !important;
+      animation-duration: 0ms !important;
+    }
+  }
+</style>
 </head>
 <body>
-    <h1>Bract</h1>
-    <p class="tagline">Intelligent calendar for iOS and Mac</p>
-    <div class="links">
-        <a href="/privacy">Privacy Policy</a>
+<main>
+  <a class="wordmark" href="/" aria-label="Bract home">Bract</a>
+
+  <section class="hero">
+    <h1>Your calendar, <em>upgraded</em>.</h1>
+    <p class="tagline">Bract layers AI scheduling, protected time, and habit tracking on top of the Apple calendars you already use. No migration. No new account. Your data stays on your device.</p>
+    <div class="cta-row">
+      <a class="cta" href="https://apps.apple.com/app/bract">
+        Get Bract on the App Store
+        <svg class="cta-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <a class="cta-secondary" href="#features">See what it does</a>
     </div>
+  </section>
+
+  <section class="section" id="features">
+    <p class="section-label">What it does</p>
+    <h2>Calendar, with intelligence and rhythm.</h2>
+    <p>Six things Bract does that Apple Calendar doesn't.</p>
+
+    <div class="grid" role="list">
+      <article class="feature" role="listitem">
+        <div class="feature-head">
+          <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          <h3>Smart scheduling</h3>
+        </div>
+        <p>Describe events in plain English. Bract finds slots that respect your protected time.</p>
+      </article>
+
+      <article class="feature" role="listitem">
+        <div class="feature-head">
+          <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01"/></svg>
+          <h3>Protected blocks</h3>
+        </div>
+        <p>Mark recurring time as Focus, Sleep, or Family. AI suggestions know the difference between free and committed.</p>
+      </article>
+
+      <article class="feature" role="listitem">
+        <div class="feature-head">
+          <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+          <h3>Rituals</h3>
+        </div>
+        <p>Daily and weekly habits that live in your calendar — not in a separate app. Streaks and a 7-day strip make consistency visible.</p>
+      </article>
+
+      <article class="feature" role="listitem">
+        <div class="feature-head">
+          <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="m7 15 4-6 4 3 5-7"/></svg>
+          <h3>Weekly Review</h3>
+        </div>
+        <p>A structured retrospective: what completed, what slipped, where your time actually went. Optional AI insights.</p>
+      </article>
+
+      <article class="feature" role="listitem">
+        <div class="feature-head">
+          <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          <h3>Universal</h3>
+        </div>
+        <p>One purchase. Same app on iPhone and iPad. Native SwiftUI, same data, no separate iPad version.</p>
+      </article>
+
+      <article class="feature" role="listitem">
+        <div class="feature-head">
+          <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <h3>Private</h3>
+        </div>
+        <p>Calendar data stays on device. AI is opt-in and bring-your-own-key. No tracking. No analytics. No third-party SDKs.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="ai-block">
+    <p class="section-label">AI, on your terms</p>
+    <h2>Bring your own key. Pick your provider.</h2>
+    <p>Bract supports Anthropic Claude, OpenAI GPT, and Google Gemini. Bring your own API key — pricing is set by the provider you choose. One in-app unlock works with all three. Switch any time without losing your keys.</p>
+    <p>The only data that leaves your device is event titles and times, only when you use an AI feature, and only to the provider you chose.</p>
+    <div class="providers" aria-label="Supported AI providers">
+      <span class="provider-chip">Anthropic Claude</span>
+      <span class="provider-chip">OpenAI GPT</span>
+      <span class="provider-chip">Google Gemini</span>
+    </div>
+  </section>
+
+  <footer>
+    <nav aria-label="Footer">
+      <a href="/privacy">Privacy</a>
+      <a href="/support">Support</a>
+      <a href="mailto:support@bract.app">Contact</a>
+    </nav>
+    <p class="copyright">&copy; 2026 Bract</p>
+  </footer>
+</main>
 </body>
 </html>
