@@ -9,6 +9,8 @@
 <title>Bract — Support</title>
 <meta name="description" content="Bract support: how to get help, report issues, and find answers to common questions about the AI calendar app.">
 <link rel="canonical" href="https://bract.app/support">
+<link rel="icon" type="image/png" href="/icon.png">
+<link rel="apple-touch-icon" href="/icon.png">
 <style>
   :root {
     --paper: #fbfaf7;
@@ -18,8 +20,6 @@
     --accent-hover: #1f4570;
     --hairline: #e8e5de;
     --card: #f4f2ec;
-    --code-bg: #ece9e1;
-    --shadow: 0 1px 2px rgba(26, 26, 31, 0.04);
   }
   @media (prefers-color-scheme: dark) {
     :root {
@@ -29,9 +29,7 @@
       --accent: #7ba8d9;
       --accent-hover: #a1c4ea;
       --hairline: #2c2a26;
-      --card: #242220;
-      --code-bg: #2a2826;
-      --shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+      --card: #2a2724;
     }
   }
   * { box-sizing: border-box; }
@@ -47,10 +45,25 @@
   }
   ::selection { background: var(--accent); color: var(--paper); }
   :focus-visible {
-    outline: 2px solid var(--accent);
+    outline: 2px solid var(--ink);
     outline-offset: 3px;
     border-radius: 2px;
   }
+
+  .skip-link {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    background: var(--ink);
+    color: var(--paper);
+    padding: 10px 16px;
+    border-radius: 0 0 6px 0;
+    z-index: 10;
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .skip-link:focus { left: 0; }
+
   main {
     max-width: 680px;
     margin: 0 auto;
@@ -60,7 +73,6 @@
     main { padding: 48px 22px 80px; }
   }
 
-  /* Wordmark */
   .wordmark {
     display: inline-flex;
     align-items: center;
@@ -70,16 +82,15 @@
     color: var(--ink);
     text-decoration: none;
     margin-bottom: 56px;
+    padding: 4px 0;
   }
-  .wordmark::before {
-    content: "";
-    width: 22px; height: 22px;
-    border-radius: 6px;
-    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%);
-    box-shadow: var(--shadow);
+  .wordmark-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 7px;
+    display: block;
   }
 
-  /* Header */
   header.page-head {
     padding-bottom: 28px;
     margin-bottom: 36px;
@@ -100,12 +111,11 @@
     margin: 0;
   }
 
-  /* Sections */
   section { margin: 40px 0; }
   h2 {
-    font-family: ui-serif, "New York", Charter, Georgia, serif;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
     font-size: 22px;
-    font-weight: 500;
+    font-weight: 600;
     letter-spacing: -0.01em;
     margin: 0 0 16px;
     color: var(--ink);
@@ -115,7 +125,6 @@
     color: var(--ink);
   }
 
-  /* FAQ list */
   .faq {
     list-style: none;
     padding: 0;
@@ -141,7 +150,6 @@
     margin: 0;
   }
 
-  /* Issue checklist */
   ul.checklist {
     padding-left: 22px;
     margin: 0 0 14px;
@@ -149,7 +157,6 @@
   }
   ul.checklist li { margin-bottom: 8px; }
 
-  /* Contact emphasis */
   .contact-card {
     background: var(--card);
     border: 1px solid var(--hairline);
@@ -163,7 +170,7 @@
   a {
     color: var(--accent);
     text-decoration: none;
-    border-bottom: 1px solid transparent;
+    border-bottom: 1px solid var(--hairline);
     transition: border-color 150ms ease, color 150ms ease;
   }
   a:hover, a:focus-visible {
@@ -173,13 +180,12 @@
 
   code {
     font: 14px/1.4 ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
-    background: var(--code-bg);
+    background: var(--card);
     padding: 2px 7px;
     border-radius: 5px;
     color: var(--ink);
   }
 
-  /* Footer */
   footer {
     border-top: 1px solid var(--hairline);
     margin-top: 64px;
@@ -195,10 +201,13 @@
   footer nav a {
     color: var(--muted);
     margin-right: 16px;
-    border: none;
+    border-bottom: none;
+    padding: 6px 0;
+    display: inline-block;
   }
   footer nav a:hover, footer nav a:focus-visible {
     color: var(--ink);
+    border-bottom: none;
   }
   footer p { font-size: 12.5px; margin: 0; color: var(--muted); }
 
@@ -211,28 +220,24 @@
 </style>
 </head>
 <body>
-<main>
-  <a class="wordmark" href="/" aria-label="Bract home">Bract</a>
+<a class="skip-link" href="#main">Skip to content</a>
+<main id="main">
+  <a class="wordmark" href="/" aria-label="Bract home">
+    <img class="wordmark-icon" src="/icon.png" width="28" height="28" alt="">
+    <span>Bract</span>
+  </a>
 
   <header class="page-head">
     <h1>Support</h1>
-    <p>Help with the AI calendar app for iPhone, iPad, and Mac.</p>
+    <p>Help with the AI calendar app for iPhone and iPad.</p>
   </header>
 
   <section>
     <h2>Quick answers</h2>
     <ul class="faq">
       <li>
-        <strong>How do I set up AI features?</strong>
-        <p>Open Settings → AI Provider, pick Anthropic / OpenAI / Google, and paste an API key from your provider's developer console. Takes about two minutes. The one-time AI unlock IAP gates the feature; provider compute is paid separately by you directly to your chosen provider (typically under $1/month).</p>
-      </li>
-      <li>
-        <strong>Why does Bract ask for calendar permission?</strong>
-        <p>Bract reads your existing Apple calendars to display events and detect scheduling conflicts. Your data stays on device unless you explicitly use an AI feature (which sends only event titles and times).</p>
-      </li>
-      <li>
-        <strong>Can I switch AI providers?</strong>
-        <p>Yes. One unlock works with all three. Change provider any time in Settings; your stored keys for other providers are preserved.</p>
+        <strong>Why does the app work without AI?</strong>
+        <p>The free tier (calendar viewing, ritual tracking, protected blocks, widgets, Weekly Review in data-only mode) doesn't require AI. AI features are an opt-in unlock.</p>
       </li>
       <li>
         <strong>What's a "ritual"?</strong>
@@ -243,8 +248,24 @@
         <p>Recurring time you've marked as committed (Focus Work, Sleep, Family, etc.). When AI scheduling suggests reschedules or finds open slots, it respects these blocks.</p>
       </li>
       <li>
-        <strong>Why does the app work without AI?</strong>
-        <p>The free tier (calendar viewing, ritual tracking, protected blocks, widgets, Weekly Review in data-only mode) doesn't require AI. AI features are an opt-in unlock.</p>
+        <strong>Will Bract work with my Google Calendar or Outlook?</strong>
+        <p>Yes, via Apple Calendar. If your Google or Outlook account is added in iOS Settings → Calendars, Bract reads it through EventKit just like Apple Calendar does — no separate setup in Bract.</p>
+      </li>
+      <li>
+        <strong>How do I set up AI features?</strong>
+        <p>Open Settings → AI Provider, choose Anthropic, OpenAI, or Google, and paste an API key from your provider's developer console.</p>
+      </li>
+      <li>
+        <strong>What does AI cost?</strong>
+        <p>A one-time in-app unlock turns on AI features. Provider compute (Claude, GPT, Gemini) is billed directly by your chosen provider — typically under $1 per month for regular use. Bract receives nothing from your provider spending.</p>
+      </li>
+      <li>
+        <strong>Why does Bract ask for calendar permission?</strong>
+        <p>Bract reads your existing Apple calendars to display events and detect scheduling conflicts. Your data stays on device unless you explicitly use an AI feature (which sends only event titles and times).</p>
+      </li>
+      <li>
+        <strong>Can I switch AI providers?</strong>
+        <p>Yes. One unlock works with all three. Change provider any time in Settings; your stored keys for other providers are preserved.</p>
       </li>
     </ul>
   </section>
@@ -252,12 +273,12 @@
   <section>
     <h2>Reporting issues</h2>
     <div class="contact-card">
-      <p>If something is broken, please email the developer at <a href="mailto:support@bract.app">support@bract.app</a>.</p>
-      <p>Every message reaches a real human — Bract is a small project, not a corporation.</p>
+      <p>If something is broken, please email <a href="mailto:support@bract.app">support@bract.app</a>.</p>
+      <p>Every message reaches a real human. Bract is built by one developer — replies are personal, not templated.</p>
     </div>
     <p>When reporting an issue, please include:</p>
     <ul class="checklist">
-      <li>What device and OS version you're on (iPhone 17 Pro / iOS 17.5, etc.)</li>
+      <li>Your device and OS version (e.g., iPhone 16 Pro on iOS 18)</li>
       <li>What you were trying to do</li>
       <li>What happened instead</li>
       <li>If AI-related: which provider you have configured (Anthropic / OpenAI / Google)</li>
@@ -275,7 +296,7 @@
       <a href="/privacy">Privacy</a>
       <a href="mailto:support@bract.app">Contact</a>
     </nav>
-    <p>&copy; 2026 Bract</p>
+    <p>Made by an independent developer · &copy; 2026 Bract</p>
   </footer>
 </main>
 </body>
