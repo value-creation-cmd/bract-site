@@ -7,7 +7,7 @@
 <meta name="theme-color" content="#fbfaf7" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#1b1b1f" media="(prefers-color-scheme: dark)">
 <title>Bract — What's next</title>
-<meta name="description" content="What we're working on next, what's further out, and what we've decided not to build. No dates — indie software ships when it's right.">
+<meta name="description" content="What's coming next, what's further out, and what we've decided not to build.">
 <link rel="canonical" href="https://bract.app/roadmap">
 <link rel="icon" type="image/png" href="/icon.png">
 <link rel="apple-touch-icon" href="/icon.png">
@@ -231,8 +231,39 @@
 
   <header class="page-head">
     <h1>What's next</h1>
-    <p>What we're working on, what's further out, and what we've decided not to build. No dates.</p>
+    <p>What's in the works, what's further out, and a few things we've decided not to build.</p>
   </header>
+
+  <section>
+    <p class="section-label">Shipping in v1.0</p>
+    <h2>What you get on day one.</h2>
+    <ul class="items">
+      <li>
+        <strong>Protected blocks.</strong>
+        <p>Mark recurring time as Focus, Sleep, Family, or your own. AI suggestions and rescheduling respect these blocks.</p>
+      </li>
+      <li>
+        <strong>Rituals with streaks.</strong>
+        <p>Daily and weekly habits in the calendar. A 7-day strip and streak count make consistency visible.</p>
+      </li>
+      <li>
+        <strong>Natural-language scheduling.</strong>
+        <p>Describe an event in your own words. Bring your own AI provider key — Anthropic Claude, OpenAI GPT, or Google Gemini.</p>
+      </li>
+      <li>
+        <strong>Weekly Review.</strong>
+        <p>What got done, what slipped, where your week went. Optional AI summary; data-only mode works without a key.</p>
+      </li>
+      <li>
+        <strong>Widgets.</strong>
+        <p>Lock Screen and Home Screen — rituals, next event, morning brief. Your day visible before you open the app.</p>
+      </li>
+      <li>
+        <strong>Morning Brief.</strong>
+        <p>A single notification with today's outlook — events, rituals, anything that needs attention.</p>
+      </li>
+    </ul>
+  </section>
 
   <section>
     <p class="section-label">What's next</p>
@@ -244,7 +275,7 @@
       </li>
       <li>
         <strong>Polish on natural-language scheduling.</strong>
-        <p>The AI is good. Some phrasings still throw it. Each one we hear about makes the next person's first try smoother.</p>
+        <p>The AI handles most requests well. Unusual phrasing occasionally misfires — every report helps.</p>
       </li>
       <li>
         <strong>More AI provider choice.</strong>
@@ -258,12 +289,8 @@
     <h2>Actively being built. Order may shift as work clarifies.</h2>
     <ul class="items">
       <li>
-        <strong>Bract for Mac.</strong>
-        <p>The codebase is universal — Mac needs its own design pass before it ships. We want to do it properly, not port it sloppily.</p>
-      </li>
-      <li>
-        <strong>Energy and sleep-aware scheduling.</strong>
-        <p>Bract uses signals from Apple Health — sleep, energy, heart-rate variability — to suggest realistic days. Your Health data never leaves your iPhone. Your AI provider sees a summary like "low-energy day" — never your numbers, never your sleep hours.</p>
+        <strong>Apple Watch companion.</strong>
+        <p>A glanceable Bract on your wrist — today's rituals, what's next, a tap to mark them done. Complications for the watch face so the next thing is always there, without reaching for your phone.</p>
       </li>
       <li>
         <strong>A weekly intentions list.</strong>
@@ -286,26 +313,30 @@
     <ul class="items">
       <li>
         <strong>Bract notices what you actually do.</strong>
-        <p>You accept morning focus slots, decline late-afternoon ones, always shift Friday meetings to Thursday. No preferences screen — the app gets progressively righter without asking. This is the longest-term direction.</p>
+        <p>You accept morning focus slots and always push Friday meetings to Thursday. Over time, Bract learns those patterns and factors them in. No preferences screen needed. This is the furthest-out item on the list.</p>
       </li>
       <li>
         <strong>Direct calendar integration for Google and Microsoft.</strong>
-        <p>Today Bract reads these through iOS Settings — add your Google or Outlook account there and they show up automatically. A future update lets you connect them directly inside Bract for richer fields and faster sync, without sending your data to a Bract server. Same model as your AI key: tokens stay in your iPhone Keychain, all calls go directly between your iPhone and the provider.</p>
+        <p>Today Bract reads these through iOS Settings — add your Google or Outlook account there and they show up automatically. A future update lets you connect them directly inside Bract for richer fields and faster sync, without sending your data to a Bract server. Same model as your AI key: your credentials stay in your iPhone Keychain, all calls go directly between your iPhone and the provider.</p>
       </li>
       <li>
         <strong>Proactive block defense.</strong>
-        <p>A meeting lands on your Deep Work block. Bract quietly moves the block to the next slot that works and shows you a single "moved it — undo?" toast. You stop having to think about protecting your focus time.</p>
+        <p>A meeting lands on your Deep Work block. The plan: Bract moves the block to the next slot that works and shows a single "moved it — undo?" prompt. Not shipped yet — getting this right matters more than getting it out.</p>
       </li>
       <li>
         <strong>Travel-aware scheduling.</strong>
-        <p>Hooks for "I'm in Lisbon Wed–Sun, plan around that" already exist in the code. Turning it on takes a careful pass on time zones and how the AI explains its choices.</p>
+        <p>Travel-aware scheduling — "I'm in Lisbon Wed–Sun, plan around that" — is on the list. Time zones and how the AI explains date-boundary decisions need careful work before it ships.</p>
+      </li>
+      <li>
+        <strong>Energy and sleep-aware scheduling.</strong>
+        <p>Planned: Bract will use signals from Apple Health — sleep data, resting heart rate — to flag low-energy days in scheduling suggestions. Your Health data stays on iPhone; the AI sees only a label like "low-energy day."</p>
       </li>
     </ul>
   </section>
 
   <section>
     <p class="section-label">What we're not doing</p>
-    <h2>These are deliberate choices, not omissions.</h2>
+    <h2>Things we've thought about and decided against.</h2>
     <ul class="items not-doing">
       <li>
         <strong>No team or shared calendars.</strong>
@@ -313,11 +344,11 @@
       </li>
       <li>
         <strong>No web app, no sync server, no account.</strong>
-        <p>Your data lives on your device, in Apple's calendar database. There is no Bract cloud — and there won't be one. We'd rather build the best native app than a worse cross-platform one.</p>
+        <p>Your data lives on your device, in Apple's calendar database. There is no Bract cloud — and there won't be one.</p>
       </li>
       <li>
         <strong>No tracking, no analytics, no third-party SDKs.</strong>
-        <p>Permanent commitment, not "currently." This is the architecture, not a configuration.</p>
+        <p>No tracking. Not now, not in a future update — the app has no mechanism for it.</p>
       </li>
       <li>
         <strong>No autonomous AI.</strong>
@@ -331,7 +362,7 @@
   </section>
 
   <aside class="disclaimer">
-    <p>This page describes directions we're working in, not a release schedule. We don't publish dates because indie software ships when it's right, not when a roadmap says so. Items here may move, change shape, or get dropped if we learn they aren't useful — and we'd rather tell you that honestly than ship something half-built to hit a quarter. <strong>If something here is the reason you'd buy Bract, please wait until it ships before you do.</strong></p>
+    <p>This is a direction, not a schedule. Items may move, change shape, or get dropped. <strong>If something here is the reason you'd buy Bract, wait until it ships.</strong></p>
   </aside>
 
   <footer>
